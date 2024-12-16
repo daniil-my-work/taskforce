@@ -28,13 +28,15 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
+        'fixture' => [
             'class' => 'yii\faker\FixtureController',
+            'fixtureDataPath' => '@app/tests/fixtures/data', // Данные фикстур
+            'templatePath' => '@app/tests/fixtures/templates', // Шаблоны фикстур
+            'namespace' => 'app\tests\fixtures', // Пространство имен для классов фикстур
         ],
     ],
-    */
+
 ];
 
 if (YII_ENV_DEV) {

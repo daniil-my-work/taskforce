@@ -10,7 +10,8 @@ class TaskController extends Controller
     public function actionIndex()
     {
         $tasks = Task::find()
-            ->where(['task_status' => 'new'])
+            // ->where(['task_status' => 'Completed'])
+            ->orderBy("date_public DESC")
             ->all();
 
         return $this->render('@app/views/site/task', ['tasks' => $tasks]);
