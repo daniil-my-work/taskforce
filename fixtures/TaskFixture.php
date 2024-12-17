@@ -7,5 +7,6 @@ use yii\test\ActiveFixture;
 class TaskFixture extends ActiveFixture
 {
     public $modelClass = 'app\models\Task';  // Модель, для которой загружаются данные
+    public $dataFile = '@app/fixtures/data/task.php'; 
 }
 

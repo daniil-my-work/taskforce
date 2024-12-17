@@ -10,7 +10,7 @@ class TaskController extends Controller
     public function actionIndex()
     {
         $tasks = Task::find()
-            // ->where(['task_status' => 'Completed'])
+            ->where(['task_status' => 'Completed'])
             ->orderBy("date_public DESC")
             ->all();
 
