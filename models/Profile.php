@@ -38,9 +38,10 @@ class Profile extends \yii\db\ActiveRecord
     {
         return [
             [['birth_date'], 'safe'],
-            [['mark_id', 'user_id', 'review_id'], 'integer'],
             [['img'], 'string', 'max' => 255],
+            [['birth_date'], 'date', 'format' => 'php:Y-m-d'],
             [['user_description', 'telephone', 'telegram'], 'string', 'max' => 128],
+            [['mark_id', 'user_id', 'review_id'], 'integer'],
             [['mark_id'], 'exist', 'skipOnError' => true, 'targetClass' => Review::class, 'targetAttribute' => ['mark_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['review_id'], 'exist', 'skipOnError' => true, 'targetClass' => Review::class, 'targetAttribute' => ['review_id' => 'id']],

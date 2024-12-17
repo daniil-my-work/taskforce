@@ -34,6 +34,7 @@ class Review extends \yii\db\ActiveRecord
     {
         return [
             [['date_comment'], 'safe'],
+            [['date_comment'], 'date', 'format' => 'php:Y-m-d H:i:s'],
             [['review_description'], 'string'],
             [['review_mark', 'reviewer'], 'integer'],
             [['reviewer'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['reviewer' => 'id']],
@@ -59,7 +60,7 @@ class Review extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getProfiles()
+    public function getMarkProfiles()
     {
         return $this->hasMany(Profile::class, ['mark_id' => 'id']);
     }
@@ -69,7 +70,7 @@ class Review extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getProfiles0()
+    public function getReviewProfiles()
     {
         return $this->hasMany(Profile::class, ['review_id' => 'id']);
     }
@@ -79,7 +80,7 @@ class Review extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getReviewer0()
+    public function getReviewer()
     {
         return $this->hasOne(User::class, ['id' => 'reviewer']);
     }

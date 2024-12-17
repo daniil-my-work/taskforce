@@ -39,11 +39,12 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['date_registration'], 'safe'],
-            [['email'], 'required'],
-            [['is_available'], 'integer'],
+            [['date_registration'], 'date', 'format' => 'php:Y-m-d H:i:s'],
             [['user_name', 'email', 'city', 'user_role'], 'string', 'max' => 128],
-            [['user_password'], 'string', 'max' => 12],
             [['email'], 'unique'],
+            [['email'], 'required'],
+            [['user_password'], 'string', 'max' => 12],
+            [['is_available'], 'integer'],
         ];
     }
 
@@ -99,7 +100,7 @@ class User extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks()
+    public function getPerformedTasks()
     {
         return $this->hasMany(Task::class, ['performer_id' => 'id']);
     }
@@ -109,7 +110,7 @@ class User extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks0()
+    public function getClientTasks()
     {
         return $this->hasMany(Task::class, ['client_id' => 'id']);
     }

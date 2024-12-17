@@ -44,9 +44,11 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             [['date_public', 'date_finish'], 'safe'],
+            [['date_public'], 'date', 'format' => 'php:Y-m-d'],
+            [['date_finish'], 'date', 'format' => 'php:Y-m-d H:i:s'],
+            [['task_status_code', 'task_status', 'title', 'city_lon', 'city_lat'], 'string', 'max' => 128],
             [['task_description', 'task_file'], 'string'],
             [['budget', 'city', 'category_id', 'client_id', 'performer_id'], 'integer'],
-            [['task_status_code', 'task_status', 'title', 'city_lon', 'city_lat'], 'string', 'max' => 128],
             [['task_status_code'], 'unique'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
             [['performer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['performer_id' => 'id']],

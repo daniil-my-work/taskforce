@@ -8,6 +8,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\faker\FixtureController',
+            'fixtureDataPath' => '@app/fixtures/data', // Данные фикстур
+            'templatePath' => '@app/fixtures/templates', // Шаблоны фикстур
+            'namespace' => 'app\fixtures', // Пространство имен для классов фикстур
+        ],
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -28,15 +36,6 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    'controllerMap' => [
-        'fixture' => [
-            'class' => 'yii\faker\FixtureController',
-            'fixtureDataPath' => '@app/tests/fixtures/data', // Данные фикстур
-            'templatePath' => '@app/tests/fixtures/templates', // Шаблоны фикстур
-            'namespace' => 'app\tests\fixtures', // Пространство имен для классов фикстур
-        ],
-    ],
-
 ];
 
 if (YII_ENV_DEV) {

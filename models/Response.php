@@ -33,6 +33,7 @@ class Response extends \yii\db\ActiveRecord
     {
         return [
             [['date_response'], 'safe'],
+            [['date_response'], 'date', 'format' => 'php:Y-m-d H:i:s'],
             [['response_description'], 'string'],
             [['price', 'performer', 'response_mark'], 'integer'],
             [['performer'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['performer' => 'id']],
