@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Task;
+use yii\db\Expression;
 use yii\web\Controller;
 
 class TaskController extends Controller
