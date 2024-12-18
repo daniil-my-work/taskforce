@@ -359,8 +359,82 @@ class QueryController extends Controller
     //         ->all();
     // }
 
-    public function actionTestActiveQuery4() {
+    public function actionTestActiveQuery4() // 8+/10
+    {
+        // 1
+        $users = User::find()
+            ->where(['is_active' => true])
+            ->andWhere(['<', 'dt_reg', new Expression('NOW() - INTERVAL 1 YEAR')])
+            ->all();
 
+        // 2
+        $products = Product::find()
+            ->where(['category' => 'electronics'])
+            ->andWhere(['>', 'price', 500])
+            ->all();
+
+        // 3
+        $orders = Order::find()
+            ->where(['>', 'total_price', 5000])
+            ->andWhere(['status' => 'completed'])
+            ->orderBy('created_at DESC')
+            ->all();
+
+        // 4
+        $users = User::find()
+            ->where([
+                'or',
+                ['like', 'surname', 'A%', false],
+                ['like', 'surname', 'B%', false]
+            ])
+            ->all();
+
+        // 5
+        Orders::updateAll(
+            ['status' => 'shipped'],
+            ['>', 'dt_add', '2023-01-01']
+        );
+
+        // 6
+        $products = Product::find()
+            ->where(['category' => 'clothing'])
+            ->andWhere(['in_stock' => true])
+            ->andWhere(['>', 'discount', 0])
+            ->orderBy('price DESC')
+            ->all();
+
+        // 7
+        $users = User::find()
+            ->where(['is_active' => false])
+            ->andWhere(['<', 'dt_reg', new Expression('NOW() - INTERVAL 1 YEAR')])
+            ->all();
+
+        foreach ($users as $user) {
+            $user->delete();
+        }
+
+        // 8
+        $orders = Order::find()
+            ->where(['<', 'created_at', new Expression('NOW() - INTERVAL 1 MONTH')])
+            ->andWhere(['status' => 'pending'])
+            ->all();
+
+        // 9
+        $products = Product::find()
+            ->where(['category' => 'sale'])
+            ->andWhere(['>', 'sale', 20])
+            ->all();
+
+        foreach ($products as $product) {
+            $product->price *= 1.1;
+            $product->save();
+        }
+
+        // 10
+        $products = Product::find()
+            ->where(['category' => NULL])
+            ->orderBy('dt_create DESC')
+            ->all();
     }
 
 
