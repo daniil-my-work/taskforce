@@ -11,5 +11,6 @@ class BookController extends Controller
         // echo "hello";
 
         // 1
+        // $
     }
 }
