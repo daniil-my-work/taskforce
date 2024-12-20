@@ -9,8 +9,6 @@ $this->title = 'My Yii Application';
 <div class="left-column">
     <h3 class="head-main head-task">Новые задания</h3>
 
-    <!-- <?= var_dump($tasks); ?> -->
-
     <?php foreach ($tasks as $task): ?>
         <div class="task-card">
             <div class="header-task">
