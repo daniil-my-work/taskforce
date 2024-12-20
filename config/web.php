@@ -47,8 +47,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'task'  => 'task/index',
-                // '<controller>/<action>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                'post/<id:\d+>' => 'post/view',
+                // 'defaultRoute' => 'site/index',
             ],
         ],
     ],
