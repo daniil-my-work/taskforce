@@ -8,98 +8,98 @@ use yii\widgets\ActiveForm;
 $this->title = 'My Yii Application';
 ?>
 <div class="left-column">
-    <h3 class="head-main head-task">Новые задания</h3>
+    <div class="head-wrapper">
+        <h3 class="head-main">Убрать квартиру после вписки</h3>
+        <p class="price price--big">2500 ₽</p>
+    </div>
+    <p class="task-description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh,
+        sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit
+        molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas
+        tincidunt, velit ac porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc
+        quam et ligula. Ut nec ipsum sapien. Interdum et malesuada fames ac ante ipsum
+        primis in faucibus. Integer id nisi nec nulla luctus lacinia non eu turpis. Etiam in ex
+        imperdiet justo tincidunt egestas. Ut porttitor urna ac augue cursus tincidunt sit amet
+        sed orci.</p>
+    <a href="#" class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
+    <a href="#" class="button button--orange action-btn" data-action="refusal">Отказаться от задания</a>
+    <a href="#" class="button button--pink action-btn" data-action="completion">Завершить задание</a>
+    <div class="task-map">
+        <img class="map" src="img/map.png" width="725" height="346" alt="Новый арбат, 23, к. 1">
+        <p class="map-address town">Москва</p>
+        <p class="map-address">Новый арбат, 23, к. 1</p>
+    </div>
+    <h4 class="head-regular">Отклики на задание</h4>
+    <div class="response-card">
+        <img class="customer-photo" src="img/man-glasses.png" width="146" height="156" alt="Фото заказчиков">
+        <div class="feedback-wrapper">
+            <a href="#" class="link link--block link--big">Астахов Павел</a>
+            <div class="response-wrapper">
+                <div class="stars-rating small"><span class="fill-star">&nbsp;</span><span class="fill-star">&nbsp;</span><span class="fill-star">&nbsp;</span><span class="fill-star">&nbsp;</span><span>&nbsp;</span></div>
+                <p class="reviews">2 отзыва</p>
+            </div>
+            <p class="response-message">
+                Могу сделать всё в лучшем виде. У меня есть необходимый опыт и инструменты.
+            </p>
 
-    <?php foreach ($tasks as $task): ?>
-        <div class="task-card">
-            <div class="header-task">
-                <a href="#" class="link link--block link--big">
-                    <?= Html::encode($task->title); ?>
-                </a>
-                <p class="price price--task">
-                    <?= $task->budget; ?>
-                </p>
-            </div>
-            <p class="info-text">
-                <span class="current-time">
-                    <?= $task->date_public; ?>
-                </span>
-                назад
-            </p>
-            <p class="task-text">
-                <?= $task->task_description; ?>
-            </p>
-            <div class="footer-task">
-                <p class="info-text town-text">
-                    <?= $task->cities->city_name; ?>
-                </p>
-                <p class="info-text category-text">
-                    <!-- Не выводит -->
-                    <?= $task->category->name_category; ?>
-                </p>
-                <a href="#" class="button button--black">Смотреть Задание</a>
-            </div>
         </div>
-    <?php endforeach; ?>
+        <div class="feedback-wrapper">
+            <p class="info-text"><span class="current-time">25 минут </span>назад</p>
+            <p class="price price--small">3700 ₽</p>
+        </div>
+        <div class="button-popup">
+            <a href="#" class="button button--blue button--small">Принять</a>
+            <a href="#" class="button button--orange button--small">Отказать</a>
+        </div>
+    </div>
+    <div class="response-card">
+        <img class="customer-photo" src="img/man-sweater.png" width="146" height="156" alt="Фото заказчиков">
+        <div class="feedback-wrapper">
+            <a href="#" class="link link--block link--big">Дмитриев Андрей</a>
+            <div class="response-wrapper">
+                <div class="stars-rating small"><span class="fill-star">&nbsp;</span><span class="fill-star">&nbsp;</span><span class="fill-star">&nbsp;</span><span class="fill-star">&nbsp;</span><span>&nbsp;</span></div>
+                <p class="reviews">8 отзывов</p>
+            </div>
+            <p class="response-message">
+                Примусь за выполнение задания в течение часа, сделаю быстро и качественно.
+            </p>
 
-    <div class="pagination-wrapper">
-        <ul class="pagination-list">
-            <li class="pagination-item mark">
-                <a href="#" class="link link--page"></a>
-            </li>
-            <li class="pagination-item">
-                <a href="#" class="link link--page">1</a>
-            </li>
-            <li class="pagination-item pagination-item--active">
-                <a href="#" class="link link--page">2</a>
-            </li>
-            <li class="pagination-item">
-                <a href="#" class="link link--page">3</a>
-            </li>
-            <li class="pagination-item mark">
-                <a href="#" class="link link--page"></a>
-            </li>
-        </ul>
+        </div>
+        <div class="feedback-wrapper">
+            <p class="info-text"><span class="current-time">2 часа </span>назад</p>
+            <p class="price price--small">1999 ₽</p>
+        </div>
+        <div class="button-popup">
+            <a href="#" class="button button--blue button--small">Принять</a>
+            <a href="#" class="button button--orange button--small">Отказать</a>
+        </div>
     </div>
 </div>
 <div class="right-column">
-    <div class="right-card black">
-        <div class="search-form">
-            <?php $form = ActiveForm::begin(); ?>
-
-            <h4 class="head-card">Категории</h4>
-            <div class="form-group">
-                <div class="checkbox-wrapper">
-                    <?= $form->field($model, 'name_category')->checkboxList(
-                        $categories,
-                        ['value' => $model->name_category]
-                    )->label(false); ?>
-                </div>
-            </div>
-
-            <h4 class="head-card">Дополнительно</h4>
-            <div class="form-group">
-                <?= $form->field($model, 'without_performer')->checkbox(
-                    ['label' => 'Без исполнителя'],
-                    ['checked' => $model->without_performer]
-                )->label(false); ?>
-            </div>
-
-            <h4 class="head-card">Период</h4>
-            <div class="form-group">
-                <?= $form->field($model, 'period_value')->dropDownList(
-                    [
-                        '1' => '1 час',
-                        '12' => '12 часов',
-                        '24' => '24 часа',
-                    ],
-                    ['prompt' => 'Выберите период', 'value' => $model->period_value]
-                )->label(false); ?>
-            </div>
-
-            <?= Html::submitButton('Искать', ['class' => 'button button--blue']); ?>
-
-            <?php ActiveForm::end(); ?>
-        </div>
+    <div class="right-card black info-card">
+        <h4 class="head-card">Информация о задании</h4>
+        <dl class="black-list">
+            <dt>Категория</dt>
+            <dd>Уборка</dd>
+            <dt>Дата публикации</dt>
+            <dd>25 минут назад</dd>
+            <dt>Срок выполнения</dt>
+            <dd>15 октября, 13:00</dd>
+            <dt>Статус</dt>
+            <dd>Открыт для новых заказов</dd>
+        </dl>
+    </div>
+    <div class="right-card white file-card">
+        <h4 class="head-card">Файлы задания</h4>
+        <ul class="enumeration-list">
+            <li class="enumeration-item">
+                <a href="#" class="link link--block link--clip">my_picture.jpg</a>
+                <p class="file-size">356 Кб</p>
+            </li>
+            <li class="enumeration-item">
+                <a href="#" class="link link--block link--clip">information.docx</a>
+                <p class="file-size">12 Кб</p>
+            </li>
+        </ul>
     </div>
 </div>

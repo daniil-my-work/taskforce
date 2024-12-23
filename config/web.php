@@ -46,8 +46,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'task'  => 'task/index',
-                'post/<id:\d+>' => 'post/view',
+                'tasks'  => 'task/index',
+                // 'task'  => 'task/index',
+                'user/<id:\d+>' => 'post/view',
                 // 'defaultRoute' => 'site/index',
             ],
         ],
