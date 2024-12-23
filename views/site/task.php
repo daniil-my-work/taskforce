@@ -31,12 +31,11 @@ $this->title = 'My Yii Application';
             </p>
             <div class="footer-task">
                 <p class="info-text town-text">
-                    <!-- Не выводит -->
-                    <?= $task->city; ?>
+                    <?= $task->cities->city_name; ?>
                 </p>
                 <p class="info-text category-text">
                     <!-- Не выводит -->
-                    <?= $task->name_category; ?>
+                    <?= $task->category->name_category; ?>
                 </p>
                 <a href="#" class="button button--black">Смотреть Задание</a>
             </div>
@@ -66,71 +65,41 @@ $this->title = 'My Yii Application';
 <div class="right-column">
     <div class="right-card black">
         <div class="search-form">
-            <!-- ActiveForm -->
             <?php $form = ActiveForm::begin(); ?>
 
             <h4 class="head-card">Категории</h4>
             <div class="form-group">
-                <?= $form->field($model, 'name_category[]')->checkboxList([
-                    '9' => 'Курьерские услуги',
-                    '10' => 'Грузоперевозки',
-                    '11' => 'Переводы'
-                ]); ?>
+                <div class="checkbox-wrapper">
+                    <?= $form->field($model, 'name_category')->checkboxList(
+                        $categories,
+                        ['value' => $model->name_category]
+                    )->label(false); ?>
+                </div>
             </div>
 
             <h4 class="head-card">Дополнительно</h4>
             <div class="form-group">
-                <?= $form->field($model, 'without_performer')->checkbox(['label' => 'Без исполнителя']); ?>
+                <?= $form->field($model, 'without_performer')->checkbox(
+                    ['label' => 'Без исполнителя'],
+                    ['checked' => $model->without_performer]
+                )->label(false); ?>
             </div>
 
             <h4 class="head-card">Период</h4>
             <div class="form-group">
-                <?= $form->field($model, 'period_value')->dropDownList([
-                    '1' => '1 час',
-                    '12' => '12 часов',
-                    '24' => '24 часа',
-                ], ['prompt' => 'Выберите период']); ?>
+                <?= $form->field($model, 'period_value')->dropDownList(
+                    [
+                        '1' => '1 час',
+                        '12' => '12 часов',
+                        '24' => '24 часа',
+                    ],
+                    ['prompt' => 'Выберите период', 'value' => $model->period_value]
+                )->label(false); ?>
             </div>
 
             <?= Html::submitButton('Искать', ['class' => 'button button--blue']); ?>
 
             <?php ActiveForm::end(); ?>
         </div>
-
-
-        <!-- <div class="search-form">
-            <form>
-                <h4 class="head-card">Категории</h4>
-                <div class="form-group">
-                    <div class="checkbox-wrapper">
-                        <label class="control-label" for="сourier-services">
-                            <input type="checkbox" id="сourier-services" checked>
-                            Курьерские услуги</label>
-                        <label class="control-label" for="cargo-transportation">
-                            <input id="cargo-transportation" type="checkbox">
-                            Грузоперевозки</label>
-                        <label class="control-label" for="translations">
-                            <input id="translations" type="checkbox">
-                            Переводы</label>
-                    </div>
-                </div>
-                <h4 class="head-card">Дополнительно</h4>
-                <div class="form-group">
-                    <label class="control-label" for="without-performer">
-                        <input id="without-performer" type="checkbox" checked>
-                        Без исполнителя</label>
-                </div>
-                <h4 class="head-card">Период</h4>
-                <div class="form-group">
-                    <label for="period-value"></label>
-                    <select id="period-value">
-                        <option>1 час</option>
-                        <option>12 часов</option>
-                        <option>24 часа</option>
-                    </select>
-                </div>
-                <input type="submit" class="button button--blue" value="Искать">
-            </form>
-        </div> -->
     </div>
 </div>

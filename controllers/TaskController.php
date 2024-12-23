@@ -2,25 +2,27 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use app\models\Task;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 class TaskController extends Controller
 {
     public function actionIndex()
     {
+        $categories = ArrayHelper::map(Category::find()->all(), 'id', 'name_category');
         $model = new Task();
 
         $tasksQuery = Task::find();
 
         if (Yii::$app->request->getIsPost()) {
+            // Загружаем данные из POST в модель
             $model->load(Yii::$app->request->post());
+            // var_dump(Yii::$app->request->post());
 
             if ($model->validate()) {
-                // var_dump(Yii::$app->request->post());
-                var_dump($model->attributes);
-
                 // Фильтрация по категориям
                 if (!empty($model->name_category)) {
                     $tasksQuery->andWhere(['IN', 'category_id', $model->name_category]);
@@ -44,8 +46,8 @@ class TaskController extends Controller
             }
         }
 
-        $tasks = $tasksQuery->orderBy("date_public DESC")->all();
+        $tasks = $tasksQuery->joinWith('cities')->joinWith('category')->orderBy("date_public DESC")->all();
 
-        return $this->render('@app/views/site/task', ['model' => $model, 'tasks' => $tasks]);
+        return $this->render('@app/views/site/task', ['model' => $model, 'tasks' => $tasks, 'categories' => $categories]);
     }
 }

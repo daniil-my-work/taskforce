@@ -47,6 +47,7 @@ class Task extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name_category', 'without_performer', 'period_value'], 'safe'],
             [['date_public', 'date_finish'], 'safe'],
             [['date_public'], 'date', 'format' => 'php:Y-m-d'],
             [['date_finish'], 'date', 'format' => 'php:Y-m-d H:i:s'],
@@ -82,6 +83,16 @@ class Task extends \yii\db\ActiveRecord
             'client_id' => 'Client ID',
             'performer_id' => 'Performer ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Category]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this->hasOne(City::class, ['id' => 'city']);
     }
 
     /**
