@@ -1,8 +1,13 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="left-column">
-    <h3 class="head-main">Астахов Павел</h3>
+    <h3 class="head-main">
+        <?= Html::encode($user->user_name); ?>
+    </h3>
     <div class="user-card">
         <div class="photo-rate">
             <img class="card-photo" src="img/man-glasses.png" width="191" height="190" alt="Фото пользователя">
@@ -12,6 +17,7 @@ $this->title = 'My Yii Application';
             </div>
         </div>
         <p class="user-description">
+            <?= Html::encode($user->user_name); ?>
             Внезапно, ключевые особенности структуры проекта
             неоднозначны и будут подвергнуты целой серии
             независимых исследований. Следует отметить, что
@@ -37,7 +43,10 @@ $this->title = 'My Yii Application';
         </div>
         <div class="bio">
             <p class="head-info">Био</p>
-            <p class="bio-info"><span class="country-info">Россия</span>, <span class="town-info">Петербург</span>, <span class="age-info">30</span> лет</p>
+            <p class="bio-info"><span class="country-info">
+                    <?= Html::encode($user->city); ?>
+                    <!-- Россия</span>, <span class="town-info">Петербург</span>, <span class="age-info">30</span> лет -->
+            </p>
         </div>
     </div>
     <h4 class="head-regular">Отзывы заказчиков</h4>
@@ -84,10 +93,14 @@ $this->title = 'My Yii Application';
         <h4 class="head-card">Контакты</h4>
         <ul class="enumeration-list">
             <li class="enumeration-item">
-                <a href="#" class="link link--block link--phone">+7 (906) 256-06-08</a>
+                <a href="#" class="link link--block link--phone">
+                    <?= Html::encode($user->email); ?>
+                </a>
             </li>
             <li class="enumeration-item">
-                <a href="#" class="link link--block link--email">super-pavel@mail.ru</a>
+                <a href="#" class="link link--block link--email">
+                    <?= Html::encode($user->email); ?>
+                </a>
             </li>
             <li class="enumeration-item">
                 <a href="#" class="link link--block link--tg">@superpasha</a>

@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 $this->title = 'My Yii Application';
@@ -22,9 +23,8 @@ $this->title = 'My Yii Application';
             </div>
             <p class="info-text">
                 <span class="current-time">
-                    <?= $task->date_public; ?>
+                    <?= Yii::$app->formatter->asRelativeTime($task->date_public); ?>
                 </span>
-                назад
             </p>
             <p class="task-text">
                 <?= $task->task_description; ?>
@@ -37,7 +37,7 @@ $this->title = 'My Yii Application';
                     <!-- Не выводит -->
                     <?= $task->category->name_category; ?>
                 </p>
-                <a href="#" class="button button--black">Смотреть Задание</a>
+                <a href="<?= 'task-list/view/' . $task->id; ?>" class="button button--black">Смотреть Задание</a>
             </div>
         </div>
     <?php endforeach; ?>

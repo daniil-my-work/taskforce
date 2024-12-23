@@ -48,6 +48,21 @@ class TaskController extends Controller
 
         $tasks = $tasksQuery->joinWith('cities')->joinWith('category')->orderBy("date_public DESC")->all();
 
-        return $this->render('@app/views/site/task', ['model' => $model, 'tasks' => $tasks, 'categories' => $categories]);
+        return $this->render('@app/views/site/tasks', ['model' => $model, 'tasks' => $tasks, 'categories' => $categories]);
+    }
+
+    public function actionView($id)
+    {
+        $task = Task::find()
+            ->where(['tasks.id' => $id])
+            ->joinWith('cities')
+            ->joinWith('category')
+            ->one();
+
+        if (!$task) {
+            throw new \yii\web\NotFoundHttpException('Задача не найдена');
+        }
+
+        return $this->render('@app/views/site/task', ['task' => $task]);
     }
 }
