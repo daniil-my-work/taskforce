@@ -29,6 +29,10 @@ use Yii;
  */
 class Task extends \yii\db\ActiveRecord
 {
+    public $name_category;
+    public $without_performer;
+    public $period_value;
+
     /**
      * {@inheritdoc}
      */

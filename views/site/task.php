@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 
 use yii\bootstrap5\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'My Yii Application';
 ?>
@@ -30,11 +31,12 @@ $this->title = 'My Yii Application';
             </p>
             <div class="footer-task">
                 <p class="info-text town-text">
+                    <!-- Не выводит -->
                     <?= $task->city; ?>
                 </p>
                 <p class="info-text category-text">
-                    <?= $task->task_status_code; ?>
-                    Переводы
+                    <!-- Не выводит -->
+                    <?= $task->name_category; ?>
                 </p>
                 <a href="#" class="button button--black">Смотреть Задание</a>
             </div>
@@ -64,6 +66,39 @@ $this->title = 'My Yii Application';
 <div class="right-column">
     <div class="right-card black">
         <div class="search-form">
+            <!-- ActiveForm -->
+            <?php $form = ActiveForm::begin(); ?>
+
+            <h4 class="head-card">Категории</h4>
+            <div class="form-group">
+                <?= $form->field($model, 'name_category[]')->checkboxList([
+                    '9' => 'Курьерские услуги',
+                    '10' => 'Грузоперевозки',
+                    '11' => 'Переводы'
+                ]); ?>
+            </div>
+
+            <h4 class="head-card">Дополнительно</h4>
+            <div class="form-group">
+                <?= $form->field($model, 'without_performer')->checkbox(['label' => 'Без исполнителя']); ?>
+            </div>
+
+            <h4 class="head-card">Период</h4>
+            <div class="form-group">
+                <?= $form->field($model, 'period_value')->dropDownList([
+                    '1' => '1 час',
+                    '12' => '12 часов',
+                    '24' => '24 часа',
+                ], ['prompt' => 'Выберите период']); ?>
+            </div>
+
+            <?= Html::submitButton('Искать', ['class' => 'button button--blue']); ?>
+
+            <?php ActiveForm::end(); ?>
+        </div>
+
+
+        <!-- <div class="search-form">
             <form>
                 <h4 class="head-card">Категории</h4>
                 <div class="form-group">
@@ -96,6 +131,6 @@ $this->title = 'My Yii Application';
                 </div>
                 <input type="submit" class="button button--blue" value="Искать">
             </form>
-        </div>
+        </div> -->
     </div>
 </div>
