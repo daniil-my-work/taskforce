@@ -44,12 +44,13 @@ $config = [
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
+            // 'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                'task-list' => 'task/index',
-                'task-list/view/<id:\d+>' => 'task/view',
-                'user/view/<id:\d+>' => 'user/view', 
+                // 'reg' => 'registration/index', 
+                // 'task-list' => 'task/index',
+                // 'task-list/view/<id:\d+>' => 'task/view',
+                // 'user/view/<id:\d+>' => 'user/view', 
             ],
         ],
     ],

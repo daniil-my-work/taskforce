@@ -24,6 +24,8 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    public $password_repeat_user;
+
     /**
      * {@inheritdoc}
      */
