@@ -16,11 +16,16 @@ class AuthController extends Controller
     {
         $model = new User();
 
-        if(Yii::$app->request->getIsPost()) {
+        if (Yii::$app->request->getIsPost()) {
             $model->load(Yii::$app->request->post());
+            // var_dump(Yii::$app->request->post());
 
-            var_dump($model->attributes);
+            if ($model->validate()) {
+                $model->save();
 
+                var_dump('Валидация прошла');
+                return $this->redirect(['/']);
+            }
         }
 
         return $this->render('index', ['model' => $model]);

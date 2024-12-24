@@ -20,7 +20,6 @@ $this->title = 'My Yii Application';
         <h3 class="head-main head-task">Регистрация нового пользователя</h3>
         <div class="form-group">
             <?= $form->field($model, 'user_name')->textInput(); ?>
-            <span class="help-block">Error description is here</span>
         </div>
 
         <div class="form-group">
@@ -52,11 +51,13 @@ $this->title = 'My Yii Application';
         </div>
 
         <div class="form-group">
-            <?= $form->field($model, 'password_repeat_user')->checkbox([
+            <?= $form->field($model, 'is_active')->checkbox([
                 'label' => 'я собираюсь откликаться на заказы'
             ]); ?>
         </div>
 
         <?= Html::submitButton('Создать аккаунт', ['class' => 'button button--blue']); ?>
+
+        <?php ActiveForm::end(); ?>
     </div>
 </div>

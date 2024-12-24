@@ -25,6 +25,7 @@ use Yii;
 class User extends \yii\db\ActiveRecord
 {
     public $password_repeat_user;
+    public $is_active;
 
     /**
      * {@inheritdoc}
@@ -40,12 +41,14 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_registration'], 'safe'],
+            [['user_name', 'email', 'city', 'user_password', 'password_repeat_user'], 'safe'],
+            [['user_name', 'email', 'user_password', 'password_repeat_user'], 'required'],
             [['date_registration'], 'date', 'format' => 'php:Y-m-d H:i:s'],
             [['user_name', 'email', 'city', 'user_role'], 'string', 'max' => 128],
             [['email'], 'unique'],
             [['email'], 'required'],
-            [['user_password'], 'string', 'max' => 12],
+            // [['user_password'], 'string', 'max' => 12],
+            // ['password_repeat_user', 'compare', 'compareAttribute' => 'user_password', 'message' => 'Пароли не совпадают'],
             [['is_available'], 'integer'],
         ];
     }
