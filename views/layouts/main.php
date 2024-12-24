@@ -68,7 +68,7 @@ AppAsset::register($this);
         </div>
     </header>
 
-    <main class="main-content container">
+    <main class="main-content main-content--center container">
         <?= $content; ?>
     </main>
 

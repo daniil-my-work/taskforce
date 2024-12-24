@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\models\User;
-use Exception;
 use yii\web\Controller;
 
 class UserController extends Controller
@@ -18,6 +17,6 @@ class UserController extends Controller
             throw new \yii\web\NotFoundHttpException('Задача не найдена');
         }
 
-        return $this->render('@app/views/site/user', ['user' => $user]);
+        return $this->render('view', ['user' => $user]);
     }
 }

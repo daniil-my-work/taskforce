@@ -6,7 +6,7 @@ use app\models\User;
 use Yii;
 use yii\web\Controller;
 
-class RegistrationController extends Controller
+class AuthController extends Controller
 {
     /**
      * Displays homepage.
@@ -23,6 +23,6 @@ class RegistrationController extends Controller
 
         }
 
-        return $this->render('@app/views/site/registration', ['model' => $model]);
+        return $this->render('index', ['model' => $model]);
     }
 }

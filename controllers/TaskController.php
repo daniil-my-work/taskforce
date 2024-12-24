@@ -48,7 +48,7 @@ class TaskController extends Controller
 
         $tasks = $tasksQuery->joinWith('cities')->joinWith('category')->orderBy("date_public DESC")->all();
 
-        return $this->render('@app/views/site/tasks', ['model' => $model, 'tasks' => $tasks, 'categories' => $categories]);
+        return $this->render('index', ['model' => $model, 'tasks' => $tasks, 'categories' => $categories]);
     }
 
     public function actionView($id)
@@ -63,6 +63,6 @@ class TaskController extends Controller
             throw new \yii\web\NotFoundHttpException('Задача не найдена');
         }
 
-        return $this->render('@app/views/site/task', ['task' => $task]);
+        return $this->render('view', ['task' => $task]);
     }
 }

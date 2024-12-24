@@ -44,13 +44,9 @@ $config = [
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
-            // 'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                // 'reg' => 'registration/index', 
-                // 'task-list' => 'task/index',
-                // 'task-list/view/<id:\d+>' => 'task/view',
-                // 'user/view/<id:\d+>' => 'user/view', 
+                'task/view/<id:\d+>' => 'task/view',
             ],
         ],
     ],

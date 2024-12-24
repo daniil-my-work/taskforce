@@ -1,6 +1,8 @@
 RewriteEngine on
 
-# Переадресация на "чистые" URL
+# Убедитесь, что файл или каталог существует
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?$1 [L]
+
+# Передача всех запросов в index.php
+RewriteRule . index.php

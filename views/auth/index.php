@@ -12,6 +12,7 @@ $this->title = 'My Yii Application';
         flex-direction: column;
     }
 </style>
+
 <div class="center-block">
     <div class="registration-form regular-form">
         <?php $form = ActiveForm::begin(); ?>
