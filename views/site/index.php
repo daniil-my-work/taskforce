@@ -2,12 +2,10 @@
 
 /** @var yii\web\View $this */
 
-use yii\helpers\Url;
+use app\assets\AppAsset;
 
 $this->title = 'My Yii Application';
-
-// Генерация URL
-echo Url::to(['post/view', 'id' => 123]);
+AppAsset::register($this);
 ?>
 <div class="main-container">
     <p>

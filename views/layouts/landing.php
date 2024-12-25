@@ -1,12 +1,24 @@
+<?php
+
+/** @var yii\web\View $this */
+/** @var string $content */
+
+use app\assets\LandingAsset;
+use yii\bootstrap5\Html;
+
+LandingAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="<?= Yii::$app->language ?>">
 
 <head>
-    <meta charset="UTF-8">
-    <title>TaskForce</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/landing.css">
-    
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
 </head>
 
 <body class="landing">
@@ -54,7 +66,7 @@
         </header>
 
         <main>
-            <?= $content; ?>
+            <?= $content ?> <!-- Здесь будет отрисовано представление -->
         </main>
 
         <footer class="page-footer">

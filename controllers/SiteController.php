@@ -6,6 +6,12 @@ use yii\web\Controller;
 
 class SiteController extends Controller
 {
+    // public function init()
+    // {
+    //     parent::init();
+    //     $this->layout = 'main'; // Укажите layouts/main.php
+    // }
+
     /**
      * Displays homepage.
      * @return string
