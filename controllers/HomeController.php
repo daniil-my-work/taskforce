@@ -29,9 +29,11 @@ class HomeController extends Controller
                 $user = User::findOne(['email' => $loginForm->email]); // Предполагается, что User — это ваша модель
 
                 if ($user) {
-                    $userId = $user->id; // Получаем ID пользователя
-                    Yii::$app->session->set('user_id', $userId); // Сохраняем user_id в сессии
-                    return $this->redirect(['user/view', 'id' => $userId]); // Редирект с ID
+                    Yii::$app->user->login($user); 
+
+                    // $userId = $user->id; // Получаем ID пользователя
+                    // Yii::$app->session->set('user_id', $userId); // Сохраняем user_id в сессии
+                    return $this->redirect(['user/view', 'id' => $user->id]); // Редирект с ID
                 } else {
                     throw new \yii\web\NotFoundHttpException('Пользователь не найден.');
                 }

@@ -13,10 +13,12 @@ class LogOutController extends Controller
      */
     public function actionIndex()
     {
-        Yii::$app->user->logout(); // Завершаем сессию пользователя
-        Yii::$app->session->removeAll(); // Удаляем все данные из сессии (опционально)
-        return $this->redirect(['auth/index']); 
-
+        Yii::$app->user->logout();
+        return $this->goHome();
+        
+        // Yii::$app->user->logout(); // Завершаем сессию пользователя
+        // Yii::$app->session->removeAll(); // Удаляем все данные из сессии (опционально)
+        // return $this->redirect(['auth/index']); 
         // return $this->redirect(['auth/index']);
     }
 }

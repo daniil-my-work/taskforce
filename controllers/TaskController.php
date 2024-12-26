@@ -5,11 +5,37 @@ namespace app\controllers;
 use app\models\Category;
 use app\models\Task;
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 class TaskController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['add'],
+                        'roles' => ['user'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'], // Доступ для других действий для всех пользователей
+                        'roles' => ['@'], // Для авторизованных пользователей
+                    ],
+                    [
+                        'allow' => false,
+                        'roles' => ['?'], // Запрещено для гостей (неавторизованных пользователей)
+                    ],
+                ]
+            ]
+        ];
+    }
+
     public function actionIndex()
     {
         $categories = ArrayHelper::map(Category::find()->all(), 'id', 'name_category');
@@ -64,5 +90,10 @@ class TaskController extends Controller
         }
 
         return $this->render('view', ['task' => $task]);
+    }
+
+    public function actionAdd()
+    {
+        return $this->render('add');
     }
 }

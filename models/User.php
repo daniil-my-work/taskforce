@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "users".
@@ -22,10 +24,13 @@ use Yii;
  * @property Tasks[] $tasks
  * @property Tasks[] $tasks0
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     public $password_repeat_user;
     public $is_active;
+
+    // Добавьте свойство auth_key
+    public $auth_key;
 
     /**
      * {@inheritdoc}
@@ -68,6 +73,31 @@ class User extends \yii\db\ActiveRecord
             'user_role' => 'User Role',
             'is_available' => 'Is Available',
         ];
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->auth_key === $authKey;
     }
 
     /**

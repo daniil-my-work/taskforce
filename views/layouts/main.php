@@ -4,8 +4,8 @@
 /** @var string $content */
 
 use app\assets\AppAsset;
-use app\models\User;
 use yii\bootstrap5\Html;
+use yii\bootstrap5\Nav;
 use yii\helpers\Url;
 
 AppAsset::register($this);
@@ -28,7 +28,7 @@ AppAsset::register($this);
     <header class="page-header">
         <?php if (Yii::$app->controller->id !== 'auth') : ?>
             <nav class="main-nav">
-                <a href='#' class="header-logo">
+                <a href='<?= Url::to(['/']); ?>' class="header-logo">
                     <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
                 </a>
                 <div class="nav-wrapper">
@@ -36,15 +36,18 @@ AppAsset::register($this);
                         <li class="list-item list-item--active">
                             <a class="link link--nav">Новое</a>
                         </li>
-                        <li class="list-item">
-                            <a href="#" class="link link--nav">Мои задания</a>
-                        </li>
-                        <li class="list-item">
-                            <a href="#" class="link link--nav">Создать задание</a>
-                        </li>
-                        <li class="list-item">
-                            <a href="#" class="link link--nav">Настройки</a>
-                        </li>
+                        <?=
+
+                        Nav::widget([
+                            'items' => [
+                                // ['label' => 'Главная', 'url' => ['/site/index']],
+                                ['label' => 'Мои задания', 'url' => ['/task/view']], 
+                                ['label' => 'Создать задание', 'url' => ['task/add'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'Заказчик'], // Показать только для "Заказчика"
+                                ['label' => 'Выход', 'url' => ['log-out/index']],
+                            ],
+                        ]);
+                        ?>
+                       
                     </ul>
                 </div>
             </nav>
@@ -52,10 +55,12 @@ AppAsset::register($this);
         <?php if (Yii::$app->controller->id !== 'auth') : ?>
 
             <?php
-            $userId = Yii::$app->session->get('user_id');
-
-            $user = User::findOne($userId);
-            $userName = $user ? $user->user_name : '';
+            if (Yii::$app->user->isGuest) {
+                $userName = '';
+            } else {
+                $user = Yii::$app->user->identity;
+                $userName = $user->user_name ?? '';
+            }
             ?>
             <div class="user-block">
                 <a href="#">
