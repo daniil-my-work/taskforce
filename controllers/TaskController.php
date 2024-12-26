@@ -19,8 +19,12 @@ class TaskController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['add'],
-                        'roles' => ['user'],
+                        'actions' => ['create'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            // Проверяем поле user_role в identity пользователя
+                            return Yii::$app->user->identity && Yii::$app->user->identity->user_role === 'user';
+                        },
                     ],
                     [
                         'allow' => true,
@@ -29,7 +33,7 @@ class TaskController extends Controller
                     ],
                     [
                         'allow' => false,
-                        'roles' => ['?'], // Запрещено для гостей (неавторизованных пользователей)
+                        'roles' => ['*'], // Запрещено для гостей (неавторизованных пользователей)
                     ],
                 ]
             ]
@@ -92,8 +96,18 @@ class TaskController extends Controller
         return $this->render('view', ['task' => $task]);
     }
 
-    public function actionAdd()
+    public function actionCreate()
     {
-        return $this->render('add');
+        $task = new Task();
+
+        // Все категории
+        $categories = Category::find()->all(); 
+        $categoryArray = ArrayHelper::map($categories, 'id', 'name_category');
+
+        if (Yii::$app->request->getIsPost()) {
+            // дальшге
+        }
+
+        return $this->render('create', ['model' => $task, 'categoryArray' => $categoryArray]);
     }
 }

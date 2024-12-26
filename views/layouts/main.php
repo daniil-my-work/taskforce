@@ -33,21 +33,17 @@ AppAsset::register($this);
                 </a>
                 <div class="nav-wrapper">
                     <ul class="nav-list">
-                        <li class="list-item list-item--active">
-                            <a class="link link--nav">Новое</a>
-                        </li>
                         <?=
-
                         Nav::widget([
                             'items' => [
                                 // ['label' => 'Главная', 'url' => ['/site/index']],
-                                ['label' => 'Мои задания', 'url' => ['/task/view']], 
-                                ['label' => 'Создать задание', 'url' => ['task/add'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->role === 'Заказчик'], // Показать только для "Заказчика"
+                                ['label' => 'Лендинг', 'url' => ['home/index']],
+                                ['label' => 'Мои задания', 'url' => ['/task/view', 'id' => 1]],
+                                ['label' => 'Создать задание', 'url' => ['task/create'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->user_role === 'user'], // Показать только для "Заказчика"
                                 ['label' => 'Выход', 'url' => ['log-out/index']],
                             ],
                         ]);
                         ?>
-                       
                     </ul>
                 </div>
             </nav>
