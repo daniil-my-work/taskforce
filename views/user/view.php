@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 $this->title = 'My Yii Application';
+
 ?>
 <div class="left-column">
     <h3 class="head-main">

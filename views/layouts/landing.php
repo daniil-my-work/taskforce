@@ -4,8 +4,10 @@
 /** @var string $content */
 
 use app\assets\LandingAsset;
-use yii\bootstrap5\Html;
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+use app\models\LoginForm;
 
 LandingAsset::register($this);
 ?>
@@ -60,7 +62,7 @@ LandingAsset::register($this);
                     <a href="#" class="header__account-enter open-modal" data-for="enter-form">
                         <span>Вход</span></a>
                     или
-                    
+
                     <a href="<?= Url::to(['auth/index']); ?>" class="header__account-registration">
                         Регистрация
                     </a>
@@ -116,20 +118,39 @@ LandingAsset::register($this);
                 </div>
             </div>
         </footer>
+
         <section class="modal enter-form form-modal" id="enter-form">
             <h2>Вход на сайт</h2>
-            <form action="#" method="post">
-                <p>
-                    <label class="form-modal-description" for="enter-email">Email</label>
-                    <input class="enter-form-email input input-middle" type="email" name="enter-email" id="enter-email">
-                </p>
-                <p>
-                    <label class="form-modal-description" for="enter-password">Пароль</label>
-                    <input class="enter-form-email input input-middle" type="password" name="enter-email" id="enter-password">
-                </p>
-                <button class="button" type="submit">Войти</button>
-            </form>
-            <button class="form-modal-close" type="button">Закрыть</button>
+
+            <?php
+            $form = ActiveForm::begin([
+                'enableAjaxValidation' => true,
+                'validationUrl' => ['home/index']
+            ]);
+            $model = new LoginForm();
+            ?>
+
+            <?= $form->field($model, 'email')->input('email', [
+                'template' => '{label}\n{input}',
+                'options' => [
+                    'id' => 'enter-email',
+                    'class' => 'enter-form-email input input-middle'
+                ],
+            ]); ?>
+
+            <?= $form->field($model, 'password')->passwordInput([
+                'template' => '{label}\n{input}',
+                'options' => [
+                    'id' => 'enter-password',
+                    'class' => 'enter-form-email input input-middle'
+                ],
+            ]); ?>
+
+            <?= Html::submitButton('Войти', ['class' => 'button']); ?>
+
+            <?php ActiveForm::end(); ?>
+
+            <?= Html::button('Закрыть', ['class' => 'form-modal-close']); ?>
         </section>
     </div>
     <div class="overlay"></div>

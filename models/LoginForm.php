@@ -1,8 +1,9 @@
 <?php
 
+namespace app\models;
+
 use app\models\User;
-use yii\base\Module;
-use yii\db\ActiveRecord;
+use yii\base\Model;
 
 // class LoginForm extends Module {
 //     public $email;
@@ -36,6 +37,37 @@ use yii\db\ActiveRecord;
 //     }
 // }
 
-class AuthForm extends ActiveRecord {
-    
+class LoginForm extends Model
+{
+    public $email;
+    public $password;
+
+    private $_user;
+
+    public function rules()
+    {
+        return [
+            [['email', 'password'], 'safe'],
+            [['email', 'password'], 'required'],
+            // ['password', 'validatePassword']
+        ];
+    }
+
+    public function getUser() {
+        if($this->_user !== null) {
+            $this->_user = User::findOne(['email' => $this->email]);
+        }
+
+        return $this->_user;
+    }
+
+    public function validatePassword($attribute, $params) {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+
+            if (!$user) {
+                $this->addError($attribute, 'Неправильный email');
+            }
+        }
+    }
 }
