@@ -14,7 +14,7 @@ class UserController extends Controller
             ->one();
 
         if (!$user) {
-            throw new \yii\web\NotFoundHttpException('Задача не найдена');
+            throw new \yii\web\NotFoundHttpException('Пользователь не найден');
         }
 
         return $this->render('view', ['user' => $user]);

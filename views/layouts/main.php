@@ -3,10 +3,10 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
-use app\assets\LandingAsset;
+use app\assets\AppAsset;
 use yii\bootstrap5\Html;
 
-LandingAsset::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

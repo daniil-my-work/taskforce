@@ -22,9 +22,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        'css/normalize.css',
         'css/style.css',
-        // 'css/landing.css',
     ];
 
     public $js = [];

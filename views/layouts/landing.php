@@ -5,6 +5,7 @@
 
 use app\assets\LandingAsset;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 
 LandingAsset::register($this);
 ?>
@@ -22,6 +23,7 @@ LandingAsset::register($this);
 </head>
 
 <body class="landing">
+    <?php $this->beginBody() ?>
     <div class="table-layout">
         <header class=" page-header--index">
             <div class="main-container page-header__container page-header__container--index">
@@ -58,7 +60,8 @@ LandingAsset::register($this);
                     <a href="#" class="header__account-enter open-modal" data-for="enter-form">
                         <span>Вход</span></a>
                     или
-                    <a href="signup.html" class="header__account-registration">
+                    
+                    <a href="<?= Url::to(['auth/index']); ?>" class="header__account-registration">
                         Регистрация
                     </a>
                 </div>
@@ -130,7 +133,9 @@ LandingAsset::register($this);
         </section>
     </div>
     <div class="overlay"></div>
-    <script src="js/landing.js"></script>
+
+    <?php $this->endBody() ?>
 </body>
 
 </html>
+<?php $this->endPage() ?>
