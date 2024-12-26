@@ -105,7 +105,12 @@ class TaskController extends Controller
         $categoryArray = ArrayHelper::map($categories, 'id', 'name_category');
 
         if (Yii::$app->request->getIsPost()) {
-            // дальшге
+            // дальше
+
+            // 1. Заполнил модель
+            // 2. валидация
+            // 3. сохранение модели
+            // 4. Релирект на страницу опубликованного задания
         }
 
         return $this->render('create', ['model' => $task, 'categoryArray' => $categoryArray]);
