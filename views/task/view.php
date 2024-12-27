@@ -2,7 +2,12 @@
 
 /** @var yii\web\View $this */
 
+use app\src\classes\logic\action\CancelTaskAction;
+use app\src\classes\logic\action\CompleteTaskAction;
+use app\src\classes\logic\action\DenyTaskAction;
+use app\src\classes\logic\action\ResponseTaskAction;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 $this->title = 'My Yii Application';
@@ -21,9 +26,28 @@ $this->title = 'My Yii Application';
         <?= Html::encode($task->task_description); ?>
     </p>
 
-    <a href="#" class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
-    <a href="#" class="button button--orange action-btn" data-action="refusal">Отказаться от задания</a>
-    <a href="#" class="button button--pink action-btn" data-action="completion">Завершить задание</a>
+    <?php
+    $actionMap = [
+        CancelTaskAction::class => ['Отменить', 'button--orange', 'act_cancel'],
+        ResponseTaskAction::class => ['Откликнуться', 'button--blue', 'act_response'],
+        CompleteTaskAction::class => ['Завершить', 'button--pink', 'act_complete'],
+        DenyTaskAction::class => ['Отказаться', 'button--red', 'act_deny'],
+    ];
+
+    foreach ($actions as $actionClass) {
+        if (isset($actionMap[$actionClass])) {
+            [$label, $cssClass, $dataAction] = $actionMap[$actionClass];
+            echo Html::a(
+                $label,
+                Url::to(['task/change-status', 'taskId' => $task->id, 'status' => $dataAction]),
+                [
+                    'class' => "button $cssClass action-btn",
+                    'data-action' => $dataAction,
+                ]
+            );
+        }
+    }
+    ?>
 
     <div class="task-map">
         <img class="map" src="img/map.png" width="725" height="346" alt="Новый арбат, 23, к. 1">

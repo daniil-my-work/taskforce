@@ -1,13 +1,14 @@
 <?php
-namespace php2\classes\logic;
 
-use php2\classes\exception\RoleActionException;
-use php2\classes\exception\StatusActionException;
-use php2\classes\logic\action\AbstractTaskAction;
-use php2\classes\logic\action\CancelTaskAction;
-use php2\classes\logic\action\CompleteTaskAction;
-use php2\classes\logic\action\DenyTaskAction;
-use php2\classes\logic\action\ResponseTaskAction;
+namespace app\src\classes\logic;
+
+use app\src\classes\exception\RoleActionException;
+use app\src\classes\exception\StatusActionException;
+use app\src\classes\logic\action\AbstractTaskAction;
+use app\src\classes\logic\action\CancelTaskAction;
+use app\src\classes\logic\action\CompleteTaskAction;
+use app\src\classes\logic\action\DenyTaskAction;
+use app\src\classes\logic\action\ResponseTaskAction;
 
 class AvailableActions
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace php2\classes\logic\action;
+namespace app\src\classes\logic\action;
+
+use app\src\classes\logic\action\AbstractTaskAction;
 
 class ResponseTaskAction extends AbstractTaskAction
 {

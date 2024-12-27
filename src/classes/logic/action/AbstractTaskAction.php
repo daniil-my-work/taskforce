@@ -1,6 +1,6 @@
 <?php
 
-namespace php2\classes\logic\action;
+namespace app\src\classes\logic\action;
 
 abstract class AbstractTaskAction
 {

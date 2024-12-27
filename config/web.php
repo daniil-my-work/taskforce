@@ -50,6 +50,7 @@ $config = [
                 'task/create' => 'task/create',
                 'task/view/<id:\d+>' => 'task/view',
                 'user/view/<id:\d+>' => 'user/view',
+                'task/change-status' => 'task/change-status',
             ],
         ],
     ],

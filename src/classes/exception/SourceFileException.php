@@ -1,5 +1,5 @@
 <?php
 
-namespace php2\classes\exception;
+namespace app\src\classes\exception;
 
 class SourceFileException extends \Exception {};
