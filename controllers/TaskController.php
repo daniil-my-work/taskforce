@@ -136,38 +136,5 @@ class TaskController extends Controller
         $task = Task::findOne($taskId);
 
         $task->task_status = $status;
-
-        // // Проверяем, доступен ли статус для смены
-        // $actions = new AvailableActions(
-        //     $task->task_status,
-        //     $task->client_id,
-        //     $task->performer_id
-        // );
-
-        // // Связываем статус с классом действия
-        // $statusToActionMap = [
-        //     AvailableActions::STATUS_NEW => ResponseTaskAction::class,
-        //     AvailableActions::STATUS_IN_PROGRESS => CompleteTaskAction::class,
-        //     AvailableActions::STATUS_CANCEL => CancelTaskAction::class,
-        //     AvailableActions::STATUS_COMPLETE => DenyTaskAction::class,
-        //     AvailableActions::STATUS_EXPIRED => null, // Пример: для статуса expired нет действия
-        // ];
-
-        // // Получаем класс действия для текущего статуса
-        // $actionClass = $statusToActionMap[$task->task_status] ?? null;
-
-        // if ($actionClass) {
-        //     // Создаем объект действия
-        //     $action = new $actionClass();
-
-        //     // Получаем следующий статус, передавая объект действия
-        //     $nextStatus = $actions->getNextStatus($action);
-
-        //     // Выводим следующий статус
-        //     var_dump($nextStatus);  // Это покажет следующий статус, или null, если статус не изменяется
-        // } else {
-        //     // Статус не имеет ассоциированного действия
-        //     var_dump('Нет действия для этого статуса');
-        // }
     }
 }
