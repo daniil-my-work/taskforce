@@ -15,5 +15,5 @@ return [
     'date_finish' => $faker->dateTimeBetween('+1 week', '+1 month')->format('Y-m-d H:i:s'),
     'category_id' => $faker->numberBetween(9, 16),
     'client_id' => $faker->numberBetween(1, 100),
-    'performer_id' => $faker->numberBetween(1, 100),
+    'performer_id' => $faker->numberBetween(1, 4),
 ];

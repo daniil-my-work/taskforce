@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Task;
+use php2\classes\logic\AvailableActions;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
@@ -83,10 +84,14 @@ class TaskController extends Controller
 
     public function actionView($id)
     {
+        // $strategy = new AvailableActions(AvailableActions::STATUS_NEW, 1, 1);
+
         $task = Task::find()
+            ->with('cities')         // Используем with для загрузки связанных данных
+            ->with('category')      // Загрузите один город и одну категорию
+            ->with('response')      // Загрузите множество откликов
+            ->with(['response.performer'])
             ->where(['tasks.id' => $id])
-            ->joinWith('cities')
-            ->joinWith('category')
             ->one();
 
         if (!$task) {
@@ -101,7 +106,7 @@ class TaskController extends Controller
         $task = new Task();
 
         // Все категории
-        $categories = Category::find()->all(); 
+        $categories = Category::find()->all();
         $categoryArray = ArrayHelper::map($categories, 'id', 'name_category');
 
         if (Yii::$app->request->getIsPost()) {
@@ -117,4 +122,8 @@ class TaskController extends Controller
 
         return $this->render('create', ['model' => $task, 'categoryArray' => $categoryArray]);
     }
+
+    public function actionResponse() {}
+
+    public function actionDeny() {}
 }

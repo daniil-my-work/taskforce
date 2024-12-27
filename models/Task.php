@@ -124,4 +124,14 @@ class Task extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'performer_id']);
     }
+   
+    /**
+     * Gets query for [[Performer]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResponse()
+    {
+        return $this->hasMany(Response::class, ['performer' => 'performer_id']);
+    }
 }
