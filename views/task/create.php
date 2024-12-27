@@ -28,7 +28,6 @@
         'inputOptions' => ['id' => 'essence-work']
     ])->textarea(['rows' => 4])->label('Подробности задания'); ?>
 
-    <!-- Category_id -->
     <?= $form->field($model, 'category_id')
         ->dropDownList(
             $categoryArray,
@@ -46,18 +45,9 @@
         'inputOptions' => ['id' => 'location']
     ])->textInput()->label('Локация'); ?>
 
-    <?= $form->field($model, 'title', [
-        'template' => '
-                <label class="control-label" for="{id}">{label}</label>
-                {input}
-                {error}
-            ',
-        'options' => ['class' => 'half-wrapper'],
-        'inputOptions' => ['id' => 'essence-work']
-    ])->textInput()->label('Локация'); ?>
 
     <div class="half-wrapper">
-        <?= $form->field($model, 'title', [
+        <?= $form->field($model, 'budget', [
             'template' => '
                 <label class="control-label" for="{id}">{label}</label>
                 {input}
@@ -67,7 +57,7 @@
             'inputOptions' => ['id' => 'budget']
         ])->textInput()->label('Бюджет'); ?>
 
-        <?= $form->field($model, 'title', [
+        <?= $form->field($model, 'date_finish', [
             'template' => '
                 <label class="control-label" for="{id}">{label}</label>
                 {input}

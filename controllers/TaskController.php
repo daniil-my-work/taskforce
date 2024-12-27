@@ -106,11 +106,13 @@ class TaskController extends Controller
 
         if (Yii::$app->request->getIsPost()) {
             // дальше
+            $task->load(Yii::$app->request->post());
 
-            // 1. Заполнил модель
-            // 2. валидация
-            // 3. сохранение модели
-            // 4. Релирект на страницу опубликованного задания
+            if ($task->validate()) {
+                $task->save(false);
+
+                return $this->redirect(['task/view', 'id' => $task->id]);
+            }
         }
 
         return $this->render('create', ['model' => $task, 'categoryArray' => $categoryArray]);

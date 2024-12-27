@@ -50,7 +50,7 @@ class Task extends \yii\db\ActiveRecord
             [['name_category', 'without_performer', 'period_value'], 'safe'],
             [['date_public', 'date_finish'], 'safe'],
             [['date_public'], 'date', 'format' => 'php:Y-m-d'],
-            [['date_finish'], 'date', 'format' => 'php:Y-m-d H:i:s'],
+            // [['date_finish'], 'date', 'format' => 'php:Y-m-d H:i:s'],
             [['task_status_code', 'task_status', 'title', 'city_lon', 'city_lat'], 'string', 'max' => 128],
             [['task_description', 'task_file'], 'string'],
             [['budget', 'city', 'category_id', 'client_id', 'performer_id'], 'integer'],

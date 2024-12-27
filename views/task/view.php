@@ -28,7 +28,7 @@ $this->title = 'My Yii Application';
     <div class="task-map">
         <img class="map" src="img/map.png" width="725" height="346" alt="Новый арбат, 23, к. 1">
         <p class="map-address town">
-            <?= Html::encode($task->cities->city_name); ?>
+            <?= Html::encode($task->cities ? $task->cities->city_name : 'Не определен'); ?>
         </p>
         <p class="map-address">Новый арбат, 23, к. 1</p>
     </div>
