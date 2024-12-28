@@ -3,8 +3,8 @@
 /* @var $faker \Faker\Generator */
 
 return [
-    'task_status_code' => $faker->randomElement(['new', 'in_progress', 'completed', 'cancelled']),
-    'task_status' => $faker->randomElement(['New', 'In Progress', 'Completed', 'Cancelled']),
+    'task_status_code' => 'new',
+    'task_status' => 'new',
     'title' => $faker->sentence(6),
     'task_description' => $faker->paragraph(3),
     'task_file' => $faker->filePath(),
@@ -14,6 +14,6 @@ return [
     'city_lat' => $faker->latitude,
     'date_finish' => $faker->dateTimeBetween('+1 week', '+1 month')->format('Y-m-d H:i:s'),
     'category_id' => $faker->numberBetween(9, 16),
-    'client_id' => $faker->numberBetween(1, 100),
+    'client_id' => $faker->numberBetween(1, 14),
     'performer_id' => $faker->numberBetween(1, 4),
 ];

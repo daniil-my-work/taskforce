@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Task;
+use app\models\User;
 use app\src\classes\logic\action\CancelTaskAction;
 use app\src\classes\logic\action\CompleteTaskAction;
 use app\src\classes\logic\action\DenyTaskAction;
@@ -89,9 +90,12 @@ class TaskController extends Controller
 
     public function actionView($id)
     {
-        $strategy = new AvailableActions(AvailableActions::STATUS_NEW, Yii::$app->user->getId(), 1);
-        $actions = $strategy->getAvailableActions('customer', 1);
-        // var_dump($actions);
+        $userId = Yii::$app->user->getId();
+        $user = User::findOne($userId);
+
+        $strategy = new AvailableActions(AvailableActions::STATUS_NEW, $user->id, 1);
+        $actions = $strategy->getAvailableActions($user->user_role, 1);
+        var_dump($actions);
 
         $task = Task::find()
             ->with('cities')         // Используем with для загрузки связанных данных
@@ -132,9 +136,20 @@ class TaskController extends Controller
 
     public function actionChangeStatus($taskId, $status)
     {
+        // Таска
         $taskId = Yii::$app->request->get('taskId');
         $task = Task::findOne($taskId);
 
+        // Юзер
+        $userId = Yii::$app->user->getId();
+        $user = User::findOne($userId);
+
+        $strategy = new AvailableActions($task->task_status, $user->id);
+        $actions = $strategy->getAvailableActions($user->user_role, $userId);
+
+        // Создаем экземпляр класса
         $task->task_status = $status;
+
+        return $this->render('view', ['task' => $task, 'actions' => $actions]);
     }
 }

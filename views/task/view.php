@@ -28,10 +28,10 @@ $this->title = 'My Yii Application';
 
     <?php
     $actionMap = [
-        CancelTaskAction::class => ['Отменить', 'button--orange', 'act_cancel'],
-        ResponseTaskAction::class => ['Откликнуться', 'button--blue', 'act_response'],
-        CompleteTaskAction::class => ['Завершить', 'button--pink', 'act_complete'],
-        DenyTaskAction::class => ['Отказаться', 'button--red', 'act_deny'],
+        CancelTaskAction::class => ['Отменить', 'button--orange', 'cancel'],
+        ResponseTaskAction::class => ['Откликнуться', 'button--blue', 'proceed'],
+        CompleteTaskAction::class => ['Завершить', 'button--pink', 'complete'],
+        DenyTaskAction::class => ['Отказаться', 'button--red', 'cancel'],
     ];
 
     foreach ($actions as $actionClass) {
