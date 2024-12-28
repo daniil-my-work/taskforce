@@ -18,7 +18,6 @@ class AuthController extends Controller
 
         if (Yii::$app->request->getIsPost()) {
             $model->load(Yii::$app->request->post());
-            // var_dump(Yii::$app->request->post());
 
             if ($model->validate()) {
                 $model->save();

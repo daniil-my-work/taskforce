@@ -26,7 +26,7 @@ class HomeController extends Controller
 
             // Проверка и сохранение user_id
             if ($loginForm->validate()) {
-                $user = User::findOne(['email' => $loginForm->email]); // Предполагается, что User — это ваша модель
+                $user = $loginForm->getUser();
 
                 if ($user) {
                     Yii::$app->user->login($user); 
