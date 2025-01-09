@@ -20,4 +20,9 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+
+    public function actionAuth()
+    {
+        return $this->render('index');
+    }
 }
