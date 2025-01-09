@@ -21,8 +21,12 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionAuth()
+    public function actionTest()
     {
-        return $this->render('index');
+        $response = file_get_contents('https://randomuser.me/api/');
+        $data = json_decode($response, true);
+        var_dump($data['results']);
+
+        // return 'Тест';
     }
 }
