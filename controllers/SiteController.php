@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use GuzzleHttp\Client;
+use Yii;
 
 class SiteController extends Controller
 {
@@ -117,18 +118,32 @@ class SiteController extends Controller
 
         // Задание 1
         // 1. https://jsonplaceholder.typicode.com/
-        // $client = new Client([
-        //     'base_uri' => 'https://jsonplaceholder.typicode.com/',
-        //     'timeout' => 5.0
-        // ]);
+        $client = new Client([
+            'base_uri' => 'https://jsonplaceholder.typicode.com/',
+            'timeout' => 5.0
+        ]);
 
-        // $response = $client->request("GET", "posts/3");
-        // $result = $response->getBody()->getContents();
-        // $data = json_decode($result, true);
+        $response = $client->request("GET", "posts/3");
+        $result = $response->getBody()->getContents();
+        $data = json_decode($result, true);
 
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
+
+        // Сохраняет в кэш
+        $value = Yii::$app->redis->get('my_data-1');
+
+        if (!$value) {
+            Yii::$app->redis->set('my_data-1', json_encode($data)); // Ключ должен быть первым параметром
+            echo "Данные сохранены в Redis.\n";
+        } else {
+            echo "Данные из Redis:\n";
+            echo "<pre>";
+            $dataFromCache = json_decode($value, true);
+            print_r($dataFromCache);
+            echo "</pre>";
+        }
 
         // Задание 2
         // 2. https://api.openweathermap.org/data/2.5/

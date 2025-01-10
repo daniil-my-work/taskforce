@@ -17,7 +17,13 @@ $config = [
             'cookieValidationKey' => 'W2RUN9pnoS_phQ8dNAi1brKzGSG-tIeg',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\redis\Cache',
+        ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
         ],
         'user' => [
             'identityClass' => 'app\models\User',
